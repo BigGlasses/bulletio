@@ -1,4 +1,4 @@
-const Game = require('./Game.js');
+const Game = require('./game.js');
 
 const defaultEvents = (socket) => {
 
