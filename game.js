@@ -1,8 +1,7 @@
 const State = () => ({
     playerx: [0, 100],
     playery: [0, 100],
-    bulletsx: [],
-    bulletsy: [],
+    bullets: [],
     playerids: [],
     frame: 0
 })
@@ -10,8 +9,23 @@ const State = () => ({
 let state = State();
 const logic = {};
 
+logic.getPlayerIndex = (id) => {
+    return state.playerids.indexOf(id)
+}
+
+logic.shootBullet = (bullet) => {
+    playerId = logic.getPlayerIndex(bullet.player)
+    state.bullets.push({
+        x: state.playerx[playerId],
+        y: state.playery[playerId],
+        vx: [1, -1][playerId],
+        vy: 0,
+    })
+}
+
 logic.addMotion = (motion) => {
-    playerId = state.playerids.indexOf(motion.player)
+    playerId = logic.getPlayerIndex(motion.player)
+    console.log(playerId)
     state.playerx[playerId] += motion.x;
     state.playery[playerId] += motion.y;
     for (let index = 0; index < 2; index++) {
@@ -20,7 +34,11 @@ logic.addMotion = (motion) => {
         state.playerx[index] = Math.max(state.playerx[index], 0)
         state.playery[index] = Math.max(state.playery[index], 0)
     }
-    console.log(state.playerx)
+}
+
+logic.reset = () => {
+    console.log("Reset")
+    state = State();
 }
 
 logic.toDict = () => {
@@ -32,6 +50,14 @@ logic.addPlayer = (id) => {
     state.playerids.push(id)
     while (state.playerids.length > 2)
         state.playerids.shift()
+}
+
+logic.updateGameState = () => {
+    for (let index = 0; index < state.bullets.length; index++) {
+        state.bullets[index].x += state.bullets[index].vx;
+        state.bullets[index].y += state.bullets[index].vy;
+    }
+    state.bullets = state.bullets.filter((elem) => (0 <= elem.x && elem.x <= 100 && 0 <= elem.y && elem.y <= 100));
 }
 
 let dictAddFrame = (dict) => {
@@ -58,12 +84,12 @@ let dictAddBulletsPos = (dict) => {
 }
 
 let dictAddBulletsx = (dict) => {
-    dict['bulletsx'] = state.bulletsx;
+    dict['bulletsx'] = state.bullets.map((elem) => (elem.x));
     return dict
 }
 
 let dictAddBulletsy = (dict) => {
-    dict['bulletsy'] = state.bulletsy;
+    dict['bulletsy'] =state.bullets.map((elem) => (elem.y));
     return dict
 }
 

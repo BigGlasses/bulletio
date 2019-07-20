@@ -1,0 +1,5 @@
+{
+    "database" : {
+        "connectionString" : "mongodb://<brandon>:<erinniscool1>@ds060369.mlab.com:60369/shootio"
+    }
+}

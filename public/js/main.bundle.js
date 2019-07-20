@@ -28041,13 +28041,13 @@ logic.flush = function () {
 };
 
 logic.drawPlayers = function (data) {
-  logic.drawDot(data.playerx[0], data.playery[0], "FF0000");
-  logic.drawDot(data.playerx[1], data.playery[1], "FF0000");
+  logic.drawDot(data.playerx[0], data.playery[0], "#FF0000");
+  logic.drawDot(data.playerx[1], data.playery[1], "#FF0000");
 };
 
 logic.drawBullets = function (data) {
   for (var index = 0; index < data.bulletsx.length; index++) {
-    logic.drawDot(data.bulletsx[index], data.bulletsy[index], "000000");
+    logic.drawDot(data.bulletsx[index], data.bulletsy[index], "#000000");
   }
 };
 

@@ -40,4 +40,3 @@ environ.env
 
 # dotenv environment variables file
 environ.env
-dev.json

@@ -8,10 +8,20 @@ const defaultEvents = (socket) => {
     }
 
     socket.on("Move", (data) => {
-        // /console.log("Move")
         data.player = socket.id
         console.log(data)
         Game.addMotion(data)
+        pushGameState()
+    })
+
+    socket.on("Shoot", (data) => {
+        data.player = socket.id
+        Game.shootBullet(data)
+        pushGameState()
+    })
+
+    socket.on("Reset", (data) => {
+        Game.reset()
         pushGameState()
     })
 
@@ -23,7 +33,10 @@ const defaultEvents = (socket) => {
         pushGameState()
     })
 
-    setInterval(pushGameState, 50)
+    setInterval(() => {
+        Game.updateGameState()
+        pushGameState()
+    }, 50)
 }
 
 
