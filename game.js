@@ -38,7 +38,9 @@ logic.addMotion = (motion) => {
 
 logic.reset = () => {
     console.log("Reset")
+    let socketIds = state.playerids;
     state = State();
+    state.playerids = socketIds;
 }
 
 logic.toDict = () => {
