@@ -62,6 +62,8 @@ const logic = {};
 
 logic.flush = () => {
     state.ctx.clearRect(0, 0, state.canvas.width, state.canvas.height)
+    state.ctx.strokeStyle = "#000000"
+    state.ctx.strokeRect(0, 0, state.canvas.width, state.canvas.height)
 }
 
 logic.drawPlayers = (data) => {

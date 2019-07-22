@@ -28038,6 +28038,8 @@ var logic = {};
 
 logic.flush = function () {
   state.ctx.clearRect(0, 0, state.canvas.width, state.canvas.height);
+  state.ctx.strokeStyle = "#000000";
+  state.ctx.strokeRect(0, 0, state.canvas.width, state.canvas.height);
 };
 
 logic.drawPlayers = function (data) {
@@ -28080,8 +28082,8 @@ socket.emit('NewConnection', {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\brand\Documents\GitHub\shootio\node_modules\@babel\polyfill */"./node_modules/@babel/polyfill/lib/index.js");
-module.exports = __webpack_require__(/*! C:\Users\brand\Documents\GitHub\shootio\src\main.js */"./src/main.js");
+__webpack_require__(/*! C:\Users\brand\Desktop\bulletio\node_modules\@babel\polyfill */"./node_modules/@babel/polyfill/lib/index.js");
+module.exports = __webpack_require__(/*! C:\Users\brand\Desktop\bulletio\src\main.js */"./src/main.js");
 
 
 /***/ })
